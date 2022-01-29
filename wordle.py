@@ -11245,14 +11245,15 @@ def filter_bank(bank):
 
 def get_word_information(word):
     for index,letter in enumerate(word):
-        res = input(f"\nWas was the output for {letter} in position {index+1}\nGreen/Yellow/Wrong (g/y/w)?\n")
+        if (letter,index) in letter_contained_in_position:
+            continue
+        res = input(f"\nWas was the output for '{letter}' in position {index+1}\nGreen/Yellow/Wrong (g/y/w)?\n")
         if res == "g":
             letter_contained_in_position.append((letter,index))
         elif res == "y":
             letter_contained_not_in_position.append((letter,index))
         elif res == "w":
             letter_not_contained.append(letter)
-
 
 guess = bank[0]
 print(f"First guess: {guess}\n")
